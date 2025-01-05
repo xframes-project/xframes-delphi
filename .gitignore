@@ -81,3 +81,6 @@ __recovery/
 modules/
 
 .vscode
+Win32/
+Win64/
+out/
