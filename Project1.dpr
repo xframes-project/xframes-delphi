@@ -97,7 +97,7 @@ type
 
 // External DLL procedures
 
-procedure Init(
+procedure init(
   AssetsBasePath: PAnsiChar;
   RawFontDefinitions: PAnsiChar;
   RawStyleOverrideDefinitions: PAnsiChar;
@@ -110,8 +110,8 @@ procedure Init(
   OnClick: TOnClickCb
 ); cdecl; external 'xframesshared.dll';
 
-procedure SetElement(ElementJson: PAnsiChar); cdecl; external 'xframesshared.dll';
-procedure SetChildren(ID: Integer; ChildrenIDs: PAnsiChar); cdecl; external 'xframesshared.dll';
+procedure setElement(ElementJson: PAnsiChar); cdecl; external 'xframesshared.dll';
+procedure setChildren(ID: Integer; ChildrenIDs: PAnsiChar); cdecl; external 'xframesshared.dll';
 
 
 // Callback implementations
@@ -137,9 +137,9 @@ begin
       try
         ChildrenIDs.Add(1);
 
-        SetElement(PAnsiChar(AnsiString(RootNode.ToJSON)));  // Convert to PAnsiChar
-        SetElement(PAnsiChar(AnsiString(UnformattedText.ToJSON)));
-        SetChildren(0, PAnsiChar(AnsiString(ChildrenIDs.ToJSON)));
+        setElement(PAnsiChar(AnsiString(RootNode.ToJSON)));  // Convert to PAnsiChar
+        setElement(PAnsiChar(AnsiString(UnformattedText.ToJSON)));
+        setChildren(0, PAnsiChar(AnsiString(ChildrenIDs.ToJSON)));
       finally
         ChildrenIDs.Free;
       end;
@@ -254,7 +254,7 @@ begin
 
     FontDefs.AddPair('defs', DefsArray);
 
-    Init(
+    init(
       PAnsiChar(AnsiString('./assets')),
       PAnsiChar(AnsiString(FontDefs.ToJSON)),
       PAnsiChar(AnsiString(ThemeDef.ToJSON)),
